@@ -91,19 +91,34 @@
           </div>
         </div>
       </div>
-      <div class="real-wrapper" v-show="is_correct==1" @click="next" v-cloak>
+      <div
+        class="real-wrapper animate__animated animate__bounce"
+        v-show="is_correct==1"
+        @click="next"
+        v-cloak
+      >
         <div class="real">
           <img src="./img/正确.gif" alt="" />
           <div>下一题</div>
         </div>
       </div>
-      <div class="real-wrapper" v-show="is_correct==0" @click="next" v-cloak>
+      <div
+        class="real-wrapper animate__animated animate__bounce"
+        v-show="is_correct==0"
+        @click="next"
+        v-cloak
+      >
         <div class="real1">
           <img src="./img/错误.gif" alt="" />
           <div>下一题</div>
         </div>
       </div>
-      <div class="real-wrapper2" v-show="show_dialog2" @click="back" v-cloak>
+      <div
+        class="real-wrapper2 animate__animated animate__zoomInUp"
+        v-show="show_dialog2"
+        @click="back"
+        v-cloak
+      >
         <img class="success" v-clock src="./img/金牌苹果王.png" alt="" />
       </div>
     </div>
