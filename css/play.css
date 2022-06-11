@@ -1,0 +1,225 @@
+* {
+  overflow: hidden;
+}
+[v-cloak] {
+  display: none;
+}
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.q-item {
+  background-image: url("../img/选项背景.png");
+  background-repeat: no-repeat;
+  height: 50px;
+  background-position: center;
+  line-height: 50px;
+  text-align: left;
+  margin-top: 15px;
+  font-weight: 700;
+}
+.q-item:active {
+  transform: scale(1.1);
+}
+.q-item:hover {
+  transform: scale(1.1);
+}
+
+.q-item span {
+  margin-left: 15%;
+}
+.q-item img {
+  width: 30px;
+  float: right;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+.app {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../img/树干.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 100%;
+}
+
+.music {
+  animation: rotateVbtn 5s linear infinite;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 50px;
+}
+@-webkit-keyframes rotateVbtn {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+.success {
+  position: absolute;
+  text-align: center;
+  width: 85vw;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.panel {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  color: #7e6543;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+.panel-content {
+  width: 100vw;
+  height: 80vh;
+  background-image: url("../img/答题底部背景.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+.q-box {
+  position: absolute;
+  background-size: 50px;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  width: 85%;
+  height: 50vh;
+}
+.panel-title {
+  position: relative;
+  letter-spacing: 3px;
+  flex: 1;
+}
+.c {
+  width: 50px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  align-self: baseline;
+}
+.c-bg {
+  height: 40px;
+  display: block;
+}
+.c-content {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  color: white;
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: #d1c4b2;
+}
+.process {
+  width: 100px;
+  height: 35px;
+  line-height: 30px;
+  top: 27px;
+  left: 15px;
+  z-index: 0;
+  position: absolute;
+  color: white;
+  font-weight: bolder;
+  text-align: right;
+  background-image: url("../img/进度条底部.png");
+  background-repeat: no-repeat;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 0px;
+  width: 50px;
+}
+.close:hover {
+  transform: scale(1.1);
+}
+.real-wrapper {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+.real-wrapper2 {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.9);
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+.real {
+  background-image: url("../img/正确答案弹框背景.png");
+  width: 80vw;
+  height: 25vh;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  background-size: 100% 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.real div {
+  font-size: 22px;
+  font-weight: 900;
+  color: #d9822b;
+}
+.real img {
+  width: 20vw;
+}
+
+.real1 {
+  background-image: url("../img/错误答案弹框背景.png");
+  width: 80vw;
+  height: 25vh;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  background-size: 100% 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.real1 div {
+  font-size: 22px;
+  font-weight: 900;
+  color: #d9822b;
+}
+.real1 img {
+  width: 20vw;
+}
+
+.apple {
+  display: flex;
+  align-items: center;
+  padding: 5vw 8vh;
+}

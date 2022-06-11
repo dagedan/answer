@@ -1,0 +1,79 @@
+.dot {
+  /* 父盒子的相对定位 */
+  width: 10vw;
+  height: 10vw;
+  border-radius: 10vw;
+  background: red;
+}
+.dot-content {
+  /* 父盒子的相对定位 */
+  position: relative;
+  /* 宽度高度 */
+  width: 200px;
+  height: 200px;
+  /* 居中显示 */
+  background-color: rgb(199, 194, 194);
+}
+
+.city {
+  /* 子盒子绝对定位 */
+  position: absolute;
+  /* 子盒子在父盒子中间 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dotted {
+  /* 中心点宽高 */
+  height: 8px;
+  width: 8px;
+  background-color: #09f;
+  /* 设置半径，效果为圆 */
+  border-radius: 50%;
+}
+/* 选择出所有类名有pulse的对象 */
+
+.city div[class^="pulse"] {
+  /* 绝对定位 */
+  position: absolute;
+  /* 中心显示 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* 宽高 */
+  width: 5px;
+  height: 5px;
+  /* 阴影 */
+  box-shadow: 0 0 12px #009dfd;
+  /* 设置半径，效果为圆 */
+  border-radius: 50%;
+  /* 调用动画 动画名，动画时长，运动曲线，重复播放 */
+  animation: pulse 1.3s linear infinite;
+}
+/* 第二个圆延迟播放 */
+
+.city div.pulse2 {
+  animation-delay: 0.3s;
+}
+/* 第三个圆也是延迟播放 */
+
+.city div.pulse3 {
+  animation-delay: 0.6s;
+}
+/* 定义动画 */
+
+@keyframes pulse {
+  0% {
+  }
+  70% {
+    width: 40px;
+    height: 40px;
+    opacity: 1;
+  }
+  100% {
+    width: 70px;
+    height: 70px;
+    opacity: 0;
+  }
+}

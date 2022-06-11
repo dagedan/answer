@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>摘苹果小游戏</title>
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"
+      name="viewport"
+    />
+    <style>
+      [v-cloak] {
+        display: none !important;
+      }
+    </style>
+    <link rel="stylesheet" href="./css/play.css" />
+    <link rel="stylesheet" href="./css/dot.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+  </head>
+  <body>
+    <div
+      id="app"
+      class="app"
+      :style="{'background-position-y':positionY >= 0 ? positionY+'%':'100%'}"
+    >
+      <img @click="play" src="./img/音乐.png" alt="" class="music" />
+      <audio
+        src="music/OMFG 2 - Pizza(1).mp3"
+        autoplay="autoplay"
+        loop
+        id="audio"
+      ></audio>
+      <div class="process">
+        {{currentIndex + 1}}/10&nbsp;
+        <div
+          style="
+            height: 20px;
+            width: 50px;
+            background-color: darkred;
+            margin-top: -23px;
+            margin-left: 32px;
+          "
+        ></div>
+      </div>
+      <img @click="play" src="./img/音乐.png" alt="" class="music" />
+      <div
+        id="panel"
+        class="panel animate__animated animate__swing"
+        v-show="panelVisible"
+        v-cloak
+      >
+        <div class="panel-content">
+          <div class="q-box">
+            <div style="display: flex; align-items: center; padding: 0 20px">
+              <div class="c">
+                <img src="./img/数字背景.png" class="c-bg" alt="" />
+                <div class="c-content">{{currentIndex + 1}}</div>
+              </div>
+              <div class="panel-title">{{data[currentIndex].title}}</div>
+            </div>
+            <div class="answer" v-show="data[currentIndex]?.type == 0">
+              <div class="q-item" @click="processHandler(0)">
+                <span>A&nbsp;&nbsp; {{data[currentIndex].item[0]}}</span>
+              </div>
+              <div class="q-item" @click="processHandler(1)">
+                <span>B&nbsp;&nbsp; {{data[currentIndex].item[1]}}</span>
+              </div>
+              <div class="q-item" @click="processHandler(2)">
+                <span>C&nbsp;&nbsp; {{data[currentIndex].item[2]}}</span>
+              </div>
+              <div class="q-item" @click="processHandler(3)">
+                <span>D&nbsp;&nbsp; {{data[currentIndex].item[3]}}</span>
+              </div>
+            </div>
+            <div v-show="data[currentIndex]?.type == 2">
+              <div @click="processHandler(0)" class="apple">
+                <img
+                  src="./img/好苹果.png"
+                  style="width: 30px; padding-right: 10px"
+                />好苹果
+              </div>
+              <div @click="processHandler(1)" class="apple">
+                <img
+                  src="./img/坏苹果.png"
+                  style="width: 30px; padding-right: 10px"
+                />坏苹果
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="real-wrapper" v-show="is_correct==1" @click="next" v-cloak>
+        <div class="real">
+          <img src="./img/正确.gif" alt="" />
+          <div>下一题</div>
+        </div>
+      </div>
+      <div class="real-wrapper" v-show="is_correct==0" @click="next" v-cloak>
+        <div class="real1">
+          <img src="./img/错误.gif" alt="" />
+          <div>下一题</div>
+        </div>
+      </div>
+      <div class="real-wrapper2" v-show="show_dialog2" @click="back" v-cloak>
+        <img class="success" v-clock src="./img/金牌苹果王.png" alt="" />
+      </div>
+    </div>
+
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            show_dialog: false,
+            show_dialog2: false,
+            panelVisible: true,
+            show_correct: false,
+            positionY: -1,
+            is_correct: -1,
+            currentIndex: 0,
+            position: -400,
+            audio: null,
+            index_: -1,
+            elapsed: 0,
+            data: [
+              {
+                id: 1,
+                title: "当有人向你索要验向你12312123索要验证码是你应该？？",
+                item: ["直接告诉1", "直接告诉2", "直接告诉3", "直接告诉4"],
+                type: 0,
+                answer: 0,
+              },
+              {
+                id: 2,
+                title:
+                  "当有人向你索要验向你12312123索要验证码是你应该？？当有人向你索要验向你12312123索要验证码是你应该？？",
+                item: ["需要", "不需要", "不知道", "都可以"],
+                type: 0,
+                answer: 1,
+              },
+              {
+                id: 3,
+                title:
+                  "当有人向你索要验向你12312123索要验证码是你应该？？当有人向你索要验向你12312123索要验证码是你应该？？当有人向你索要验向你12312123索要验证码是你应该？？",
+                item: ["好苹果", "坏苹果"],
+                type: 2,
+                answer: 2,
+              },
+              {
+                id: 4,
+                title: "22222当有人向向你索要验证码是你应该？",
+                item: ["直接告诉1", "直接告诉2", "直接告诉3", "直接告诉4"],
+                type: 0,
+                answer: 3,
+              },
+              {
+                id: 5,
+                title: "3333当有人向向你索要验证码是你应该？",
+                item: ["直接告诉1", "直接告诉2", "直接告诉3", "直接告诉4"],
+                type: 0,
+                answer: 4,
+              },
+              {
+                id: 6,
+                title: "4444当有人向向你索要验证码是你应该？",
+                item: ["直接告诉1", "直接告诉2", "直接告诉3", "直接告诉4"],
+                type: 0,
+                answer: 4,
+              },
+              {
+                id: 7,
+                title: "5555当有人向向你索要验证码是你应该？",
+                item: ["直接告诉1", "直接告诉2", "直接告诉3", "直接告诉4"],
+                type: 0,
+                answer: 4,
+              },
+              {
+                id: 8,
+                title: "6666当有人向向你索要验证码是你应该？",
+                item: ["直接告诉1", "直接告诉2", "直接告诉3", "直接告诉4"],
+                type: 0,
+                answer: 4,
+              },
+              {
+                id: 9,
+                title: "777当有人向向你索要验证码是你应该？",
+                item: ["直接告诉1", "直接告诉2", "直接告诉3", "直接告诉4"],
+                type: 0,
+                answer: 4,
+              },
+              {
+                id: 10,
+                title: "8888当有人向向你索要验证码是你应该？",
+                item: ["直接告诉1", "直接告诉2", "直接告诉3", "直接告诉4"],
+                type: 0,
+                answer: 4,
+              },
+            ],
+          };
+        },
+        mounted: function () {
+          this.audio = document.getElementById("audio");
+        },
+        // 定义事件处理函数
+        methods: {
+          modalShowAction: function (param) {
+            this.currentIndex = param;
+          },
+          play: function () {
+            if (this.audio.paused) {
+              this.audio.play();
+            } else {
+              this.audio.pause();
+            }
+          },
+          processHandler: function (value) {
+            console.log(value, this.data[this.currentIndex].answer);
+            if (value == this.data[this.currentIndex].answer) {
+              this.is_correct = 1;
+            } else {
+              this.show_dialog = true;
+              this.is_correct = 0;
+            }
+          },
+          next: function () {
+            this.panelVisible = false;
+            if (this.currentIndex == this.data.length - 1) {
+              this.show_dialog2 = true;
+              this.is_correct = -1;
+              return;
+            }
+            $("#panel").removeClass("animate__animated animate__swing ");
+            setTimeout(() => {
+              this.panelVisible = true;
+              $("#panel").addClass("animate__animated animate__swing ");
+            }, 100);
+            this.is_correct = -1;
+            this.currentIndex = this.currentIndex + 1;
+            console.log(100 - this.currentIndex * 10);
+            this.elapsed = 0;
+            this.animloop();
+          },
+          animloop() {
+            let req = window.requestAnimationFrame(this.animloop);
+            // const prePositionY = this.positionY >= 0 ? this.positionY : 90;
+            if (this.elapsed <= 10) {
+              this.positionY = 90 - this.currentIndex * this.elapsed;
+              this.elapsed = this.elapsed + 0.2;
+            } else {
+              cancelAnimationFrame(req);
+            }
+          },
+          back() {
+            window.location.href = "./index.html";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
