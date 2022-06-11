@@ -39,7 +39,7 @@
   </head>
   <body class="">
     <div class="container animate__animated animate__bounce"></div>
-    <img class="music" src="./img/音乐.png" />
+    <img class="music" src="./img/音乐.png" id="music" />
     <audio
       src="music/OMFG 2 - Pizza(1).mp3"
       autoplay="autoplay"
@@ -156,6 +156,13 @@
             $("#tip2").removeClass("animate__animated animate__rubberBand ");
           }, 1000);
         }, 2500);
+        document.getElementById("audio").addEventListener("click", () => {
+          if (document.getElementById("audio").paused) {
+            document.getElementById("audio").play();
+          } else {
+            document.getElementById("audio").pause();
+          }
+        });
       });
     </script>
   </body>
