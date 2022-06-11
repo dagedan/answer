@@ -148,6 +148,9 @@
         // $('#popup').popup({}, "#btn");
         $("#popup1").popup({}, "#btn1");
         $("#popup2").popup({}, "#btn2");
+        setTimeout(() => {
+          document.getElementById("audio").play();
+        }, 500);
         setInterval(() => {
           $("#tip2").addClass(
             "animate__animated animate__rubberBand animate__infinite"
