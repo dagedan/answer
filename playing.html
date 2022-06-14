@@ -26,20 +26,17 @@
       :style="{'background-position-y':positionY >= 0 ? positionY+'%':'100%'}"
     >
       <img @click="play" src="./img/音乐.png" alt="" class="music" />
-      <img src="img/松鼠.gif" class="sshu">
-      <a href="index.html"><img src="img/bank.png" class="back"></a>
-      <audio
+      <img src="img/松鼠.gif" class="sshu" />
+      <a href="index.html"><img src="img/bank.png" class="back" /></a>
+      <!-- <audio
         src="music/OMFG 2 - Pizza(1).mp3"
         autoplay="autoplay"
         loop
         id="audio"
-      ></audio>
-      <div class="process">
-        {{currentIndex + 1}}/10&nbsp;
-       
-      </div>
+      ></audio> -->
+      <div class="process">{{currentIndex + 1}}/10&nbsp;</div>
       <img @click="play" src="./img/音乐.png" alt="" class="music" />
-      <img src="img/xiaoren01.gif" class="girl">
+      <img src="img/xiaoren01.gif" class="girl" />
       <div
         id="panel"
         class="panel animate__animated animate__swing"
@@ -48,39 +45,41 @@
       >
         <div class="panel-content">
           <div class="q-box">
-            <div style="display: flex; align-items: center; padding: 0 20px">
-              <div class="c">
-                <img src="./img/数字背景.png" class="c-bg" alt="" />
-                <div class="c-content">{{currentIndex + 1}}</div>
+            <div class="rel-div">
+              <div style="display: flex; align-items: center; padding: 0 20px">
+                <div class="c">
+                  <img src="./img/数字背景.png" class="c-bg" alt="" />
+                  <div class="c-content">{{currentIndex + 1}}</div>
+                </div>
+                <div class="panel-title">{{data[currentIndex].title}}</div>
               </div>
-              <div class="panel-title">{{data[currentIndex].title}}</div>
-            </div>
-            <div class="answer" v-show="data[currentIndex]?.type == 0">
-              <div class="q-item" @click="processHandler(0)">
-                <span>A&nbsp;&nbsp; {{data[currentIndex].item[0]}}</span>
+              <div class="answer" v-show="data[currentIndex]?.type == 0">
+                <div class="q-item" @click="processHandler(0)">
+                  <span>A&nbsp;&nbsp; {{data[currentIndex].item[0]}}</span>
+                </div>
+                <div class="q-item" @click="processHandler(1)">
+                  <span>B&nbsp;&nbsp; {{data[currentIndex].item[1]}}</span>
+                </div>
+                <div class="q-item" @click="processHandler(2)">
+                  <span>C&nbsp;&nbsp; {{data[currentIndex].item[2]}}</span>
+                </div>
+                <div class="q-item" @click="processHandler(3)">
+                  <span>D&nbsp;&nbsp; {{data[currentIndex].item[3]}}</span>
+                </div>
               </div>
-              <div class="q-item" @click="processHandler(1)">
-                <span>B&nbsp;&nbsp; {{data[currentIndex].item[1]}}</span>
-              </div>
-              <div class="q-item" @click="processHandler(2)">
-                <span>C&nbsp;&nbsp; {{data[currentIndex].item[2]}}</span>
-              </div>
-              <div class="q-item" @click="processHandler(3)">
-                <span>D&nbsp;&nbsp; {{data[currentIndex].item[3]}}</span>
-              </div>
-            </div>
-            <div v-show="data[currentIndex]?.type == 2">
-              <div @click="processHandler(0)" class="apple">
-                <img
-                  src="./img/好苹果.png"
-                  style="width: 45px; padding-right: 10px"
-                />好苹果
-              </div>
-              <div @click="processHandler(1)" class="apple">
-                <img
-                  src="./img/坏苹果.png"
-                  style="width: 45px; padding-right: 10px"
-                />坏苹果
+              <div v-show="data[currentIndex]?.type == 2">
+                <div @click="processHandler(0)" class="apple">
+                  <img
+                    src="./img/好苹果.png"
+                    style="width: 45px; padding-right: 10px"
+                  />好苹果
+                </div>
+                <div @click="processHandler(1)" class="apple">
+                  <img
+                    src="./img/坏苹果.png"
+                    style="width: 45px; padding-right: 10px"
+                  />坏苹果
+                </div>
               </div>
             </div>
           </div>
@@ -93,7 +92,7 @@
         v-cloak
       >
         <div class="real">
-         <!-- <img src="./img/正确.gif" alt="" />
+          <!-- <img src="./img/正确.gif" alt="" />
           <div>下一题</div>  -->
         </div>
       </div>
@@ -139,15 +138,15 @@
             data: [
               {
                 id: 1,
-                title: "用户个人信息包括但不限于姓名、出生日期、身份证件号码、个人生物识别信息住址。",
+                title:
+                  "用户个人信息包括但不限于姓名、出生日期、身份证件号码、个人生物识别信息住址。",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
                 answer: 0,
               },
               {
                 id: 2,
-                title:
-                  "当有人向你索要验要验证码时你应该立即发送给他。",
+                title: "当有人向你索要验要验证码时你应该立即发送给他。",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
                 answer: 1,
@@ -163,43 +162,49 @@
               {
                 id: 4,
                 title: "你应在什么时候收集个人信息？",
-                item: ["在健身中心登记时", "在酒店办理入住登记时", "在进行满意度调查时", "在贵宾金环会会籍登记时"],
+                item: [
+                  "在健身中心登记时",
+                  "在酒店办理入住登记时",
+                  "在进行满意度调查时",
+                  "在贵宾金环会会籍登记时",
+                ],
                 type: 0,
                 answer: 3,
               },
               {
                 id: 5,
-                title: "用户个人信息包括但不限于姓名、出生日期、身份证件号码、个人生物识别信息住址。",
+                title:
+                  "用户个人信息包括但不限于姓名、出生日期、身份证件号码、个人生物识别信息住址。",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
                 answer: 4,
               },
               {
                 id: 6,
-                title:
-                  "当有人向你索要验要验证码时你应该立即发送给他。",
+                title: "当有人向你索要验要验证码时你应该立即发送给他。",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
                 answer: 4,
               },
               {
                 id: 7,
-                title: "用户个人信息包括但不限于姓名、出生日期、身份证件号码、个人生物识别信息住址。",
+                title:
+                  "用户个人信息包括但不限于姓名、出生日期、身份证件号码、个人生物识别信息住址。",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
                 answer: 4,
               },
               {
                 id: 8,
-                title:
-                  "当有人向你索要验要验证码时你应该立即发送给他。",
+                title: "当有人向你索要验要验证码时你应该立即发送给他。",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
                 answer: 4,
               },
               {
                 id: 9,
-                title: "用户个人信息包括但不限于姓名、出生日期、身份证件号码、个人生物识别信息住址。",
+                title:
+                  "用户个人信息包括但不限于姓名、出生日期、身份证件号码、个人生物识别信息住址。",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
                 answer: 4,
@@ -207,7 +212,12 @@
               {
                 id: 10,
                 title: "你应在什么时候收集个人信息？",
-                item: ["在健身中心登记时", "在酒店办理入住登记时", "在进行满意度调查时", "在贵宾金环会会籍登记时"],
+                item: [
+                  "在健身中心登记时",
+                  "在酒店办理入住登记时",
+                  "在进行满意度调查时",
+                  "在贵宾金环会会籍登记时",
+                ],
                 type: 0,
                 answer: 4,
               },

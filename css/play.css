@@ -27,7 +27,7 @@ body {
 
 .q-item span {
   margin-left: 15%;
-  color:#1e2103;
+  color: #1e2103;
 }
 .q-item img {
   width: 30px;
@@ -50,14 +50,15 @@ body {
   top: 15px;
   right: 15px;
   width: 50px;
-  z-index:99;
+  z-index: 99;
 }
-.back{
-	position: absolute;
+.back {
+  position: absolute;
   top: 80px;
   right: 15px;
   width: 50px;
-  z-index:99;}
+  z-index: 99;
+}
 @-webkit-keyframes rotateVbtn {
   0% {
     -webkit-transform: rotate(0deg);
@@ -91,27 +92,30 @@ body {
 }
 .panel-content {
   width: 100vw;
-  height: 80vh;
-  background-image: url("../img/答题底部背景.png");
+  min-height: 100vh;
   background-repeat: no-repeat;
-  background-size: 100% 68%;
   position: absolute;
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 62%;
+  top: 50%;
 }
 .q-box {
   position: absolute;
-  background-size: 50px;
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 42%;
-  width: 85%;
-  height: 50vh;
+  top: 50%;
+  width: 100%;
+}
+.rel-div {
+  position: relative;
+  overflow: hidden;
+  background-image: url("../img/答题底部背景.png");
+  background-size: 100% 100%;
+  padding: 10vh 5vh;
 }
 .panel-title {
   position: relative;
-  color:#1e2103;
+  color: #1e2103;
   flex: 1;
 }
 .c {
@@ -171,7 +175,7 @@ body {
 }
 .real-wrapper2 {
   position: absolute;
-  background-color:rgba(255, 250, 235, 0.9);
+  background-color: rgba(255, 250, 235, 0.9);
   left: 0;
   top: 0;
   bottom: 0;
@@ -229,19 +233,20 @@ body {
   display: flex;
   align-items: center;
   padding: 1vw 8vh;
-  color:#1e2103;
-  font-size:22px;
-  margin-top:20px;
+  color: #1e2103;
+  font-size: 22px;
+  margin-top: 20px;
 }
-.girl{
-	 position: absolute;
+.girl {
+  position: absolute;
   right: 10px;
   bottom: 20%;
-  width:80px;
-  z-index:10;
-	}
-.sshu{
-	width:100px;
-	position:absolute;
-	right:40px;
-	bottom:140px;}
+  width: 80px;
+  z-index: 10;
+}
+.sshu {
+  width: 100px;
+  position: absolute;
+  right: 40px;
+  bottom: 140px;
+}
