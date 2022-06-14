@@ -26,6 +26,8 @@
       :style="{'background-position-y':positionY >= 0 ? positionY+'%':'100%'}"
     >
       <img @click="play" src="./img/音乐.png" alt="" class="music" />
+      <img src="img/松鼠.gif" class="sshu">
+      <a href="index.html"><img src="img/bank.png" class="back"></a>
       <audio
         src="music/OMFG 2 - Pizza(1).mp3"
         autoplay="autoplay"
@@ -34,17 +36,10 @@
       ></audio>
       <div class="process">
         {{currentIndex + 1}}/10&nbsp;
-        <div
-          style="
-            height: 20px;
-            width: 50px;
-            background-color: darkred;
-            margin-top: -23px;
-            margin-left: 32px;
-          "
-        ></div>
+       
       </div>
       <img @click="play" src="./img/音乐.png" alt="" class="music" />
+      <img src="img/xiaoren01.gif" class="girl">
       <div
         id="panel"
         class="panel animate__animated animate__swing"
@@ -78,13 +73,13 @@
               <div @click="processHandler(0)" class="apple">
                 <img
                   src="./img/好苹果.png"
-                  style="width: 30px; padding-right: 10px"
+                  style="width: 45px; padding-right: 10px"
                 />好苹果
               </div>
               <div @click="processHandler(1)" class="apple">
                 <img
                   src="./img/坏苹果.png"
-                  style="width: 30px; padding-right: 10px"
+                  style="width: 45px; padding-right: 10px"
                 />坏苹果
               </div>
             </div>
@@ -98,8 +93,8 @@
         v-cloak
       >
         <div class="real">
-          <img src="./img/正确.gif" alt="" />
-          <div>下一题</div>
+         <!-- <img src="./img/正确.gif" alt="" />
+          <div>下一题</div>  -->
         </div>
       </div>
       <div
@@ -109,8 +104,8 @@
         v-cloak
       >
         <div class="real1">
-          <img src="./img/错误.gif" alt="" />
-          <div>下一题</div>
+          <!-- <img src="./img/错误.gif" alt="" />
+          <div>下一题</div> -->
         </div>
       </div>
       <div
@@ -144,73 +139,75 @@
             data: [
               {
                 id: 1,
-                title: "当有人向你索要验向你12312123索要验证码是你应该？？",
-                item: ["直接告诉1", "直接告诉2", "直接告诉3", "直接告诉4"],
-                type: 0,
+                title: "用户个人信息包括但不限于姓名、出生日期、身份证件号码、个人生物识别信息住址。",
+                item: ["好苹果", "坏苹果"],
+                type: 2,
                 answer: 0,
               },
               {
                 id: 2,
                 title:
-                  "当有人向你索要验向你12312123索要验证码是你应该？？当有人向你索要验向你12312123索要验证码是你应该？？",
-                item: ["需要", "不需要", "不知道", "都可以"],
-                type: 0,
+                  "当有人向你索要验要验证码时你应该立即发送给他。",
+                item: ["好苹果", "坏苹果"],
+                type: 2,
                 answer: 1,
               },
               {
                 id: 3,
                 title:
-                  "当有人向你索要验向你12312123索要验证码是你应该？？当有人向你索要验向你12312123索要验证码是你应该？？当有人向你索要验向你12312123索要验证码是你应该？？",
+                  "用户个人敏感信息是指一旦泄露、非法提供或滥用可能危害人身和财产安全,极易导致个人名誉、身心健康受到损害或歧视性待遇等的个人信息。",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
                 answer: 2,
               },
               {
                 id: 4,
-                title: "22222当有人向向你索要验证码是你应该？",
-                item: ["直接告诉1", "直接告诉2", "直接告诉3", "直接告诉4"],
+                title: "你应在什么时候收集个人信息？",
+                item: ["在健身中心登记时", "在酒店办理入住登记时", "在进行满意度调查时", "在贵宾金环会会籍登记时"],
                 type: 0,
                 answer: 3,
               },
               {
                 id: 5,
-                title: "3333当有人向向你索要验证码是你应该？",
-                item: ["直接告诉1", "直接告诉2", "直接告诉3", "直接告诉4"],
-                type: 0,
+                title: "用户个人信息包括但不限于姓名、出生日期、身份证件号码、个人生物识别信息住址。",
+                item: ["好苹果", "坏苹果"],
+                type: 2,
                 answer: 4,
               },
               {
                 id: 6,
-                title: "4444当有人向向你索要验证码是你应该？",
-                item: ["直接告诉1", "直接告诉2", "直接告诉3", "直接告诉4"],
-                type: 0,
+                title:
+                  "当有人向你索要验要验证码时你应该立即发送给他。",
+                item: ["好苹果", "坏苹果"],
+                type: 2,
                 answer: 4,
               },
               {
                 id: 7,
-                title: "5555当有人向向你索要验证码是你应该？",
-                item: ["直接告诉1", "直接告诉2", "直接告诉3", "直接告诉4"],
-                type: 0,
+                title: "用户个人信息包括但不限于姓名、出生日期、身份证件号码、个人生物识别信息住址。",
+                item: ["好苹果", "坏苹果"],
+                type: 2,
                 answer: 4,
               },
               {
                 id: 8,
-                title: "6666当有人向向你索要验证码是你应该？",
-                item: ["直接告诉1", "直接告诉2", "直接告诉3", "直接告诉4"],
-                type: 0,
+                title:
+                  "当有人向你索要验要验证码时你应该立即发送给他。",
+                item: ["好苹果", "坏苹果"],
+                type: 2,
                 answer: 4,
               },
               {
                 id: 9,
-                title: "777当有人向向你索要验证码是你应该？",
-                item: ["直接告诉1", "直接告诉2", "直接告诉3", "直接告诉4"],
-                type: 0,
+                title: "用户个人信息包括但不限于姓名、出生日期、身份证件号码、个人生物识别信息住址。",
+                item: ["好苹果", "坏苹果"],
+                type: 2,
                 answer: 4,
               },
               {
                 id: 10,
-                title: "8888当有人向向你索要验证码是你应该？",
-                item: ["直接告诉1", "直接告诉2", "直接告诉3", "直接告诉4"],
+                title: "你应在什么时候收集个人信息？",
+                item: ["在健身中心登记时", "在酒店办理入住登记时", "在进行满意度调查时", "在贵宾金环会会籍登记时"],
                 type: 0,
                 answer: 4,
               },
