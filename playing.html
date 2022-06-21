@@ -20,52 +20,55 @@
     />
   </head>
   <body>
-    <div
-      id="app"
-      class="app"
-      :style="{'background-position-y':positionY >= 0 ? positionY+'%':'100%'}"
-    >
-      
+    <div id="app" class="app" :style="{'background-position-y':positionY+'%'}">
       <a href="index.html"><img src="img/bank.png" class="back" /></a>
       <div class="process">{{currentIndex + 1}}/10&nbsp;</div>
       <img onclick="swap_music()" src="./img/音乐.png" alt="" class="music" />
       <script>
-          function swap_music() {
-            var oAudio = document.getElementById('audio');
-            if (oAudio.paused) {
-                oAudio.play();
-            }
-            else {
-                oAudio.pause();
-            }
-        } 
-		
-     </script>
+        function swap_music() {
+          var oAudio = document.getElementById("audio");
+          if (oAudio.paused) {
+            oAudio.play();
+          } else {
+            oAudio.pause();
+          }
+        }
+      </script>
       <img src="img/nan.gif" class="girl" />
-      <img src="img/小鸟飞.gif" class="niao">
-      <img src="img/treem.gif" class="treem">
-      <audio loop src="music/omg.mp3" id="audio" autoplay="autoplay" preload="auto"></audio>
-    <script>
-     //--创建页面监听，等待微信端页面加载完毕 触发音频播放
-document.addEventListener('DOMContentLoaded', function () {
-    function audioAutoPlay() {
-        var audio = document.getElementById('audio');
+      <img src="img/小鸟飞.gif" class="niao" />
+      <img src="img/treem.gif" class="treem" />
+      <audio
+        loop
+        src="music/omg.mp3"
+        id="audio"
+        autoplay="autoplay"
+        preload="auto"
+      ></audio>
+      <script>
+        //--创建页面监听，等待微信端页面加载完毕 触发音频播放
+        document.addEventListener("DOMContentLoaded", function () {
+          function audioAutoPlay() {
+            var audio = document.getElementById("audio");
             audio.play();
-        document.addEventListener("WeixinJSBridgeReady", function () {
+            document.addEventListener(
+              "WeixinJSBridgeReady",
+              function () {
+                audio.play();
+              },
+              false
+            );
+          }
+          audioAutoPlay();
+        });
+        //--创建触摸监听，当浏览器打开页面时，触摸屏幕触发事件，进行音频播放
+        document.addEventListener("touchstart", function () {
+          function audioAutoPlay() {
+            var audio = document.getElementById("audio");
             audio.play();
-        }, false);
-    }
-    audioAutoPlay();
-});
-//--创建触摸监听，当浏览器打开页面时，触摸屏幕触发事件，进行音频播放
-document.addEventListener('touchstart', function () {
-    function audioAutoPlay() {
-        var audio = document.getElementById('audio');
-            audio.play();
-    }
-    audioAutoPlay();
-});
-</script>
+          }
+          audioAutoPlay();
+        });
+      </script>
 
       <div
         id="panel"
@@ -151,14 +154,15 @@ document.addEventListener('touchstart', function () {
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
     <script>
       const vm = new Vue({
-        el: "#app",        
-		data( ) {          
-		    return {
+        el: "#app",
+        data() {
+          return {
             show_dialog: false,
             show_dialog2: false,
             panelVisible: true,
             show_correct: false,
-            positionY: -1,
+            positionY: 100,
+            prePositionY: 90,
             is_correct: -1,
             currentIndex: 0,
             position: -400,
@@ -176,7 +180,8 @@ document.addEventListener('touchstart', function () {
               },
               {
                 id: 2,
-                title: "好久不联系的微信好友突然发来一个网站链接要求投票，因为是好友发过来的，直接打开链接投票，你认为这种做法？",
+                title:
+                  "好久不联系的微信好友突然发来一个网站链接要求投票，因为是好友发过来的，直接打开链接投票，你认为这种做法？",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
                 answer: 2,
@@ -191,8 +196,9 @@ document.addEventListener('touchstart', function () {
               },
               {
                 id: 4,
-                title: "使用微信时允许“回复陌生人自动添加为朋友”的行为存在安全隐患，你认为这种说法？",
-               item: ["好苹果", "坏苹果"],
+                title:
+                  "使用微信时允许“回复陌生人自动添加为朋友”的行为存在安全隐患，你认为这种说法？",
+                item: ["好苹果", "坏苹果"],
                 type: 2,
                 answer: 1,
               },
@@ -206,7 +212,8 @@ document.addEventListener('touchstart', function () {
               },
               {
                 id: 6,
-                title: "某人正要去银行办理汇款业务时，收到一条手机短信“请把钱直接汇到****银行账号就可以了户名某某”，他信以为真，以为对方更改了收款的账号，就直接把钱汇过去，你认为这种做法？",
+                title:
+                  "某人正要去银行办理汇款业务时，收到一条手机短信“请把钱直接汇到****银行账号就可以了户名某某”，他信以为真，以为对方更改了收款的账号，就直接把钱汇过去，你认为这种做法？",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
                 answer: 2,
@@ -221,7 +228,8 @@ document.addEventListener('touchstart', function () {
               },
               {
                 id: 8,
-                title: "王某遇到法院、警方来电要求他告知银行账户、卡号、密码或向来历不明的账户转账等此类情况，他不慌不忙立即拒绝并挂断电话，你认为这种做法？",
+                title:
+                  "王某遇到法院、警方来电要求他告知银行账户、卡号、密码或向来历不明的账户转账等此类情况，他不慌不忙立即拒绝并挂断电话，你认为这种做法？",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
                 answer: 1,
@@ -236,12 +244,12 @@ document.addEventListener('touchstart', function () {
               },
               {
                 id: 10,
-                title: "收取快递时，撕毁快递箱上的面单是为了避免个人信息泄露，你认为这种说法？",
+                title:
+                  "收取快递时，撕毁快递箱上的面单是为了避免个人信息泄露，你认为这种说法？",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
                 answer: 1,
               },
-			 
             ],
           };
         },
@@ -261,7 +269,6 @@ document.addEventListener('touchstart', function () {
             }
           },
           processHandler: function (value) {
-            console.log(value, this.data[this.currentIndex].answer);
             if (value == this.data[this.currentIndex].answer) {
               this.is_correct = 1;
             } else {
@@ -284,11 +291,12 @@ document.addEventListener('touchstart', function () {
           },
           animloop() {
             let req = window.requestAnimationFrame(this.animloop);
-            // const prePositionY = this.positionY >= 0 ? this.positionY : 90;
             if (this.elapsed <= 10) {
-              this.positionY = 90 - this.currentIndex * this.elapsed;
+              this.positionY = this.prePositionY - this.elapsed;
               this.elapsed = this.elapsed + 0.2;
             } else {
+              this.elapsed = 0;
+              this.prePositionY = this.positionY;
               cancelAnimationFrame(req);
               this.panelVisible = true;
               $("#panel").addClass("animate__animated animate__swing ");
