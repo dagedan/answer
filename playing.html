@@ -25,18 +25,48 @@
       class="app"
       :style="{'background-position-y':positionY >= 0 ? positionY+'%':'100%'}"
     >
-      <img @click="play" src="./img/音乐.png" alt="" class="music" />
-      <img src="img/松鼠.gif" class="sshu" />
+      
       <a href="index.html"><img src="img/bank.png" class="back" /></a>
-      <!-- <audio
-        src="music/OMFG 2 - Pizza(1).mp3"
-        autoplay="autoplay"
-        loop
-        id="audio"
-      ></audio> -->
       <div class="process">{{currentIndex + 1}}/10&nbsp;</div>
-      <img @click="play" src="./img/音乐.png" alt="" class="music" />
-      <img src="img/xiaoren01.gif" class="girl" />
+      <img onclick="swap_music()" src="./img/音乐.png" alt="" class="music" />
+      <script>
+          function swap_music() {
+            var oAudio = document.getElementById('audio');
+            if (oAudio.paused) {
+                oAudio.play();
+            }
+            else {
+                oAudio.pause();
+            }
+        } 
+		
+     </script>
+      <img src="img/nan.gif" class="girl" />
+      <img src="img/小鸟飞.gif" class="niao">
+      <img src="img/treem.gif" class="treem">
+      <audio loop src="music/omg.mp3" id="audio" autoplay="autoplay" preload="auto"></audio>
+    <script>
+     //--创建页面监听，等待微信端页面加载完毕 触发音频播放
+document.addEventListener('DOMContentLoaded', function () {
+    function audioAutoPlay() {
+        var audio = document.getElementById('audio');
+            audio.play();
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            audio.play();
+        }, false);
+    }
+    audioAutoPlay();
+});
+//--创建触摸监听，当浏览器打开页面时，触摸屏幕触发事件，进行音频播放
+document.addEventListener('touchstart', function () {
+    function audioAutoPlay() {
+        var audio = document.getElementById('audio');
+            audio.play();
+    }
+    audioAutoPlay();
+});
+</script>
+
       <div
         id="panel"
         class="panel animate__animated animate__swing"
@@ -121,9 +151,9 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
     <script>
       const vm = new Vue({
-        el: "#app",
-        data() {
-          return {
+        el: "#app",        
+		data( ) {          
+		    return {
             show_dialog: false,
             show_dialog2: false,
             panelVisible: true,
@@ -139,88 +169,79 @@
               {
                 id: 1,
                 title:
-                  "用户个人信息包括但不限于姓名、出生日期、身份证件号码、个人生物识别信息住址。",
-                item: ["好苹果", "坏苹果"],
-                type: 2,
-                answer: 0,
-              },
-              {
-                id: 2,
-                title: "当有人向你索要验要验证码时你应该立即发送给他。",
+                  "微信收到“微信团队的安全提示:“您的微信账号在18:06尝试在另一个设备登录。登录设备：XX品牌XX型号”。这时确认是否是自己的设备登录，如果不是，则尽快修改密码，你认为这种做法？",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
                 answer: 1,
               },
               {
+                id: 2,
+                title: "好久不联系的微信好友突然发来一个网站链接要求投票，因为是好友发过来的，直接打开链接投票，你认为这种做法？",
+                item: ["好苹果", "坏苹果"],
+                type: 2,
+                answer: 2,
+              },
+              {
                 id: 3,
                 title:
-                  "用户个人敏感信息是指一旦泄露、非法提供或滥用可能危害人身和财产安全,极易导致个人名誉、身心健康受到损害或歧视性待遇等的个人信息。",
+                  "忽然接到自称“xx银行客服”的电话，告知你的信用卡因严重逾期已临时冻结，逾期行为也被录入征信系统，但只需交2万元方可解冻，并且要关注一个“xx银行自助服务中心”的公众号，即可迅速办理，情急之下立即听从对方指示汇款转账，你认为这种做法？",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
                 answer: 2,
               },
               {
                 id: 4,
-                title: "你应在什么时候收集个人信息？",
-                item: [
-                  "在健身中心登记时",
-                  "在酒店办理入住登记时",
-                  "在进行满意度调查时",
-                  "在贵宾金环会会籍登记时",
-                ],
-                type: 0,
-                answer: 3,
+                title: "使用微信时允许“回复陌生人自动添加为朋友”的行为存在安全隐患，你认为这种说法？",
+               item: ["好苹果", "坏苹果"],
+                type: 2,
+                answer: 1,
               },
               {
                 id: 5,
                 title:
-                  "用户个人信息包括但不限于姓名、出生日期、身份证件号码、个人生物识别信息住址。",
+                  "日常上网过程中，从网站上下载文件、软件，下载完成后自动安装是一种存在安全风险的行为，你认为这种说法？",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
-                answer: 4,
+                answer: 1,
               },
               {
                 id: 6,
-                title: "当有人向你索要验要验证码时你应该立即发送给他。",
+                title: "某人正要去银行办理汇款业务时，收到一条手机短信“请把钱直接汇到****银行账号就可以了户名某某”，他信以为真，以为对方更改了收款的账号，就直接把钱汇过去，你认为这种做法？",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
-                answer: 4,
+                answer: 2,
               },
               {
                 id: 7,
                 title:
-                  "用户个人信息包括但不限于姓名、出生日期、身份证件号码、个人生物识别信息住址。",
+                  "某人接到一条手机信息，有他的姓名、身份证号码以及银行卡号等信息，告知他的银行卡密码出现漏洞，请他点击链接重置密码，他仔细核对了短信中的个人信息发现全部正确，于是信以为真，便赶紧点击链接，立即重设密码，你认为这种做法？",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
-                answer: 4,
+                answer: 2,
               },
               {
                 id: 8,
-                title: "当有人向你索要验要验证码时你应该立即发送给他。",
+                title: "王某遇到法院、警方来电要求他告知银行账户、卡号、密码或向来历不明的账户转账等此类情况，他不慌不忙立即拒绝并挂断电话，你认为这种做法？",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
-                answer: 4,
+                answer: 1,
               },
               {
                 id: 9,
                 title:
-                  "用户个人信息包括但不限于姓名、出生日期、身份证件号码、个人生物识别信息住址。",
+                  "从常用应用商店下载App，不从陌生、不知名应用商店、网站页面下载App，这是一种保护个人信息的做法，你认为这种说法？",
                 item: ["好苹果", "坏苹果"],
                 type: 2,
-                answer: 4,
+                answer: 1,
               },
               {
                 id: 10,
-                title: "你应在什么时候收集个人信息？",
-                item: [
-                  "在健身中心登记时",
-                  "在酒店办理入住登记时",
-                  "在进行满意度调查时",
-                  "在贵宾金环会会籍登记时",
-                ],
-                type: 0,
-                answer: 4,
+                title: "收取快递时，撕毁快递箱上的面单是为了避免个人信息泄露，你认为这种说法？",
+                item: ["好苹果", "坏苹果"],
+                type: 2,
+                answer: 1,
               },
+			 
             ],
           };
         },
@@ -256,13 +277,8 @@
               return;
             }
             $("#panel").removeClass("animate__animated animate__swing ");
-            setTimeout(() => {
-              this.panelVisible = true;
-              $("#panel").addClass("animate__animated animate__swing ");
-            }, 100);
             this.is_correct = -1;
             this.currentIndex = this.currentIndex + 1;
-            console.log(100 - this.currentIndex * 10);
             this.elapsed = 0;
             this.animloop();
           },
@@ -274,6 +290,8 @@
               this.elapsed = this.elapsed + 0.2;
             } else {
               cancelAnimationFrame(req);
+              this.panelVisible = true;
+              $("#panel").addClass("animate__animated animate__swing ");
             }
           },
           back() {

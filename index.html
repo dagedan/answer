@@ -7,6 +7,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"
       name="viewport"
     />
+   
     <style>
       #mask_shadow {
         display: none;
@@ -39,13 +40,43 @@
   </head>
   <body class="">
     <div class="container animate__animated animate__bounce"></div>
-    <img class="music" src="./img/音乐.png" id="music" />
-    <audio
-      src="music/OMFG 2 - Pizza(1).mp3"
-      autoplay="autoplay"
-      loop
-      id="audio"
-    ></audio>
+    
+     <script src="http://wuover.qiniudn.com/jquery.js"></script>
+     <img onclick="swap_music()"  class="music" src="./img/音乐.png" id="music" />
+     <script>
+          function swap_music() {
+            var oAudio = document.getElementById('audio');
+            if (oAudio.paused) {
+                oAudio.play();
+            }
+            else {
+                oAudio.pause();
+            }
+        } 
+		
+     </script>
+     <audio loop="loop" src="music/omg.mp3" id="audio" autoplay="autoplay" preload="auto"></audio>
+    <script>
+     //--创建页面监听，等待微信端页面加载完毕 触发音频播放
+document.addEventListener('DOMContentLoaded', function () {
+    function audioAutoPlay() {
+        var audio = document.getElementById('audio');
+            audio.play();
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            audio.play();
+        }, false);
+    }
+    audioAutoPlay();
+});
+//--创建触摸监听，当浏览器打开页面时，触摸屏幕触发事件，进行音频播放
+document.addEventListener('touchstart', function () {
+    function audioAutoPlay() {
+        var audio = document.getElementById('audio');
+            audio.play();
+    }
+    audioAutoPlay();
+});
+</script>
     <div class="btn-wrapper">
       <div class="btn">
         <a href="./playing.html">
